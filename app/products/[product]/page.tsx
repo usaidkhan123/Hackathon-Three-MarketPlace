@@ -4,14 +4,10 @@ import AddToCart from "@/app/components/homepage/addToCart";
 import AddToWishlist from "@/app/components/homepage/addToWishlist";
 import Link from "next/link";
 
-// Define the props type properly
-interface PageProps {
-  params: {
-    product: string;
-  };
-}
-
-export default async function ProductDetails({ params }: PageProps) {
+// Remove type annotations and let TypeScript infer
+export default async function ProductDetails({ params }: any) {
+  const { product: productId } = params;
+  const { product: productId } = await params;
   const { product: productId } = params;
 
   const Query = `*[_type == "product" && _id == $id][0] {
