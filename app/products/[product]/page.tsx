@@ -4,10 +4,7 @@ import AddToCart from "@/app/components/homepage/addToCart";
 import AddToWishlist from "@/app/components/homepage/addToWishlist";
 import Link from "next/link";
 
-// Remove type annotations and let TypeScript infer
-export default async function ProductDetails({ params }: any) {
-  const { product: productId } = params;
-  const { product: productId } = await params;
+export default async function ProductDetails({ params }: { params: { product: string } }) {
   const { product: productId } = params;
 
   const Query = `*[_type == "product" && _id == $id][0] {
