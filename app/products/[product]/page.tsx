@@ -4,11 +4,18 @@ import AddToCart from "@/app/components/homepage/addToCart";
 import AddToWishlist from "@/app/components/homepage/addToWishlist";
 import Link from "next/link";
 
-export default async function ProductDetails({ params }: { params: { product: string } }) {
+// Define the props type properly
+interface PageProps {
+  params: {
+    product: string;
+  };
+}
+
+export default async function ProductDetails({ params }: PageProps) {
   const { product: productId } = params;
 
   const Query = `*[_type == "product" && _id == $id][0] {
-     id,
+     _id,
      productName,
      category, 
      price,
@@ -52,7 +59,7 @@ export default async function ProductDetails({ params }: { params: { product: st
                           <span className="title-font font-medium text-2xl text-gray-900">
                               ${product.price}
                           </span>
-                          < AddToCart product={product} />
+                          <AddToCart product={product} />
                       <div className="flex">
                       <button className="mt-3 mr-2 bg-custom5b text-white px-6 py-3 rounded-lg font-bold hover:bg-indigo-600 transition">
                           <Link href="/buynow">Buy Now</Link>
